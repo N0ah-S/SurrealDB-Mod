@@ -11,8 +11,9 @@ import java.io.*;
 public class SurrealDBInstance {
 
     public SurrealDBInstance(File jarFile) {
-        // Assuring the required binary is available
         File parent = jarFile.getParentFile();
+
+        //region Assuring the required binary is available
 
         // Corrects path in dev-environment
         // TODO tidy the check up (might cause error when the user has interesting .minecraft paths)
@@ -31,6 +32,7 @@ public class SurrealDBInstance {
         File exe = new File(parent, "surrealdb-current.exe");
 
         if(!exe.exists()) {
+
             HttpResponse<String> version = Unirest.get("https://version.surrealdb.com/").asString();
             if(!version.isSuccess()) {
                 SurrealDBMod.logger.error("Failed to retrieve version. You need to be connected to the internet, " +
@@ -62,8 +64,9 @@ public class SurrealDBInstance {
 
 
         }
+        //endregion
 
-        // Starting surrealdb
+        //region Starting surrealdb
         try {
             ProcessBuilder   ps = new ProcessBuilder(exe.getAbsolutePath(),"start");
 
@@ -72,10 +75,9 @@ public class SurrealDBInstance {
             Process pr = ps.start();
 
             // Making sure the service is stopped on termination
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                killSurrealServer(pr);
-            }));
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> killSurrealServer(pr)));
 
+            // Redirecting the output to the standard logger
             new Thread(() -> {
                 try {
                     BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
@@ -93,15 +95,15 @@ public class SurrealDBInstance {
             SurrealDBMod.logger.error(e.getMessage());
             e.printStackTrace();
         }
-
+        //endregion
     }
 
     private void killSurrealServer(Process pr) {
         SurrealDBMod.logger.info("Stopping SurrealDB Server");
+
         try {
             SurrealDBMod.logger.info("Stopped SurrealDB Server with exit code " +
                             pr.destroyForcibly().waitFor());
-
         } catch (InterruptedException e) {
             SurrealDBMod.logger.error("Unable to stop SurrealDB Server");
             SurrealDBMod.logger.error("You might need to kill the process yourself.");
@@ -109,19 +111,5 @@ public class SurrealDBInstance {
             SurrealDBMod.logger.error("Then \"kill <id>\" where <id> is replaced by what you just found out.");
             e.printStackTrace();
         }
-    }
-
-    /**
-     *
-     * for TEST-USE only
-     * TODO tidy the tests up
-     *
-     */
-    public static void main(String[] args) {
-        SurrealDBMod.logger = new SimpleLogger("SrDB-R", Level.ALL, false,
-                true, false, false, "mm:ss", null,
-                PropertiesUtil.getProperties(), System.out);
-        new SurrealDBInstance(
-                new File("C:\\Users\\Noah\\Jetbrains\\IdeaProjects\\Minecraft\\ForgeMods\\SurrealDBMod\\run\\mods\\modname.jar"));
     }
 }

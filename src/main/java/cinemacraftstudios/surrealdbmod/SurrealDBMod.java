@@ -23,16 +23,10 @@ public class SurrealDBMod {
     {
         logger = event.getModLog();
 
-        System.err.println(event.getSourceFile());
-
         db = new SurrealDBInstance(event.getSourceFile());
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-        // some example code
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-    }
+    public void init(FMLInitializationEvent event) {}
 
 }
