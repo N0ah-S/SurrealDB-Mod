@@ -1,4 +1,4 @@
-package cinemacraftstudios.surrealdbmod;
+package org.cinemacraftstudios.surrealdb;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -20,6 +20,8 @@ public class SurrealDBMod {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
+
+
 
         db = new SurrealDBInstance(event.getSourceFile());
     }

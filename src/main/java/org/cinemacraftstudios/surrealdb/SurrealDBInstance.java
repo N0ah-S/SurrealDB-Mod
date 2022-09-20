@@ -1,9 +1,12 @@
-package cinemacraftstudios.surrealdbmod;
+package org.cinemacraftstudios.surrealdb;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class SurrealDBInstance {
 
