@@ -7,4 +7,4 @@
 A Minecraft mod that provides a SurrealDB server for other mods to interact and communicate with.
 
 This mod automatically downloads the latest version of SurrealDB to "/mods/surrealdb" and starts it whenever the Minecraft client starts on PreInit.
-Its main purpose is to allow easy inter-mod/-world/-network data structures without yaml or mod dependencies.
+Its main purpose is to allow easy inter-mod/-world/-network data structures without local files or mod dependencies.
