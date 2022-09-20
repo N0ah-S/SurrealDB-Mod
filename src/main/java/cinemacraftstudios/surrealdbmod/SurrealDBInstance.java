@@ -2,9 +2,6 @@ package cinemacraftstudios.surrealdbmod;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.simple.SimpleLogger;
-import org.apache.logging.log4j.util.PropertiesUtil;
 
 import java.io.*;
 

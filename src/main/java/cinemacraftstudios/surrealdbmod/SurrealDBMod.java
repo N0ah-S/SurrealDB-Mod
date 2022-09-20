@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(modid = SurrealDBMod.MODID, name = SurrealDBMod.NAME, version = SurrealDBMod.VERSION)
 public class SurrealDBMod {
+
     public static final String MODID = "surrealdb";
     public static final String NAME = "SurrealDB Mod";
     public static final String VERSION = "0.1";
@@ -17,8 +18,7 @@ public class SurrealDBMod {
     SurrealDBInstance db;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
 
         db = new SurrealDBInstance(event.getSourceFile());

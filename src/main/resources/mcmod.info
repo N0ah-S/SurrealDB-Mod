@@ -5,7 +5,7 @@
     "description": "Runs a SurrealDB instance in the background.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "",
+    "url": "https://github.com/N0ah-S/SurrealDB-Mod",
     "updateUrl": "",
     "authorList": ["Noah S"],
     "credits": "Alibaba (fastjson) \nSurrealDB \nThe Forge and FML guys.",
