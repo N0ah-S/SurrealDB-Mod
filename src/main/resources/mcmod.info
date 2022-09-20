@@ -1,0 +1,16 @@
+[
+{
+  "modid": "surrealdb",
+  "name": "SurrealDB Mod",
+  "description": "Runs a SurrealDB instance in the background.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Noah S"],
+  "credits": "Alibaba (fastjson) \nSurrealDB \nThe Forge and FML guys.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
