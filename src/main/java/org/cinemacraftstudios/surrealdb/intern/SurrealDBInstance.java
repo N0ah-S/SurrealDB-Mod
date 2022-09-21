@@ -1,14 +1,16 @@
-package org.cinemacraftstudios.surrealdb;
+package org.cinemacraftstudios.surrealdb.intern;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.cinemacraftstudios.surrealdb.api.SurrealDB;
 import org.cinemacraftstudios.util.BinaryStarterBuilder;
 
 import java.io.*;
 
-public class SurrealDBInstance {
+public abstract class SurrealDBInstance extends SurrealDB {
 
-    public SurrealDBInstance(SurrealDBData data, File jarFile) {
+    protected SurrealDBInstance(SurrealDBData data, File jarFile) {
+        super();
         File parent = jarFile.getParentFile();
 
         // region Assuring the required binary is available
@@ -22,6 +24,7 @@ public class SurrealDBInstance {
                 e.printStackTrace();
             }
         }
+
         // check if this mod was already moved into a subfolder
         if (!parent.getName().equalsIgnoreCase("surrealdb")) {
             parent = new File(parent, "surrealdb");

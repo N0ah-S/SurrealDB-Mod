@@ -1,12 +1,14 @@
-package org.cinemacraftstudios.surrealdb;
+package org.cinemacraftstudios.surrealdb.intern;
 
 import com.alibaba.fastjson.JSON;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
+import org.cinemacraftstudios.surrealdb.api.SurrealDBFullyInitialized;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +38,8 @@ public class SurrealDBMod {
                 e.printStackTrace();
             }
         } else {
-            data = new SurrealDBData("minecraft", "notch", "0.0.0.0:8000", false);
+            // Maybe TODO encrypt password after initial reading?
+            data = new SurrealDBData("minecraft", "notch", "0.0.0.0:8000", false, true);
             String content = JSON.toJSONString(data, true);
             try {
                 FileUtils.writeStringToFile(config, content, "UTF-8");
@@ -45,11 +48,17 @@ public class SurrealDBMod {
             }
         }
 
-
-        db = new SurrealDBInstance(data, event.getSourceFile());
+        db = new SurrealDBFullyInitialized(data, event.getSourceFile());
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {}
+    public void init(FMLInitializationEvent event) {
+
+    }
+
+    @EventHandler
+    public void onIMC(FMLInterModComms.IMCEvent event) {
+
+    }
 
 }

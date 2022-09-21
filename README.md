@@ -11,3 +11,13 @@ Its main purpose is to allow easy inter-mod/-world/-network data structures with
 
 > **Warning**
 > This mod is in early development and its primary use is for the production of internal tools.
+
+## Ways to integrate with this mod
+- [ ] Add this mod as a dependency and use its infrastructure (jar dependency)
+- [X] Add this mod as a dependency and use the SurrealDBData Package (jar dependency)
+- [ ] Get a Reference Function per IMC (Only requires a C+P DataClass)
+- [ ] Get a Reference Function per IMC (String req -> String res)
+- [ ] Get the authentication details per IMC (REST/WebSocket)
+
+> **Note**
+> Only the checkmarked bullet points are actually implemented to a somewhat usable extend
