@@ -2,9 +2,11 @@ package org.cinemacraftstudios.surrealdb.intern;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.cinemacraftstudios.surrealdb.api.Result;
 import org.cinemacraftstudios.surrealdb.api.SurrealDB;
 import org.cinemacraftstudios.util.BinaryStarterBuilder;
 
+import javax.annotation.Nonnull;
 import java.io.*;
 
 public abstract class SurrealDBInstance extends SurrealDB {
@@ -126,4 +128,10 @@ public abstract class SurrealDBInstance extends SurrealDB {
             e.printStackTrace();
         }
     }
+
+    @Nonnull
+    public abstract <T> Result<T> query(String ns, String db, String query);
+
+    @Nonnull
+    public abstract <T> Result<T> query(String ns, String db, String query, String... args);
 }

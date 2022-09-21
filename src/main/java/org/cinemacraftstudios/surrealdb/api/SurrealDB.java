@@ -2,6 +2,7 @@ package org.cinemacraftstudios.surrealdb.api;
 
 import org.cinemacraftstudios.surrealdb.intern.SurrealDBData;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class SurrealDB {
@@ -29,4 +30,8 @@ public abstract class SurrealDB {
     @Nullable
     public abstract SurrealDBData getData() throws RestrictedAuthDataException;
 
+    @Nonnull
+    public abstract <T> Result<T> query(String ns, String db, String query);
+    @Nonnull
+    public abstract <T> Result<T> query(String ns, String db, String query, String... args);
 }
