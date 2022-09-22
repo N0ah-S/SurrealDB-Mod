@@ -8,6 +8,12 @@ buildscript {
     }
 }
 
+plugins {
+    id "groovy"
+    id "java"
+    id "idea"
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
@@ -18,6 +24,11 @@ group = 'org.cinemacraftstudios.surrealdb' // http://maven.apache.org/guides/min
 archivesBaseName = 'surrealdb'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
 
 minecraft {
     // The mappings can be changed at any time, and must be in the following format.
@@ -69,8 +80,12 @@ dependencies {
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
-    compile 'com.alibaba:fastjson:2.0.13'
-    compile 'com.konghq:unirest-java:3.13.11'
+
+    extraLibs 'com.alibaba:fastjson:2.0.14'
+    extraLibs 'com.konghq:unirest-java:3.13.11:standalone'
+
+
+    configurations.compile.extendsFrom(configurations.extraLibs)
 
     // Real examples
     // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
@@ -101,6 +116,11 @@ jar {
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
 }
 
 // Example configuration to allow publishing using the maven-publish task
